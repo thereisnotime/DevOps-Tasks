@@ -2,6 +2,8 @@
 
 Basic DevOps hands-on tasks for beginners looking to learn the ropes. This is a work in progress and will be updated as we go along.
 
+Table of Contents:
+
 - [DevOps-Tasks](#devops-tasks)
   - [Pre-requisites](#pre-requisites)
     - [Learning](#learning)
@@ -31,7 +33,7 @@ Basic DevOps hands-on tasks for beginners looking to learn the ropes. This is a 
       - [Task 1.2.7 Running a Single Container](#task-127-running-a-single-container)
       - [Task 1.2.8 Running Multiple Containers](#task-128-running-multiple-containers)
       - [Task 1.2.9 Your Compose](#task-129-your-compose)
-      - [Task 1.2.9 Your Compose from Source](#task-129-your-compose-from-source)
+      - [Task 1.2.10 Your Compose from Source](#task-1210-your-compose-from-source)
     - [Task 1.3 Kubernetes](#task-13-kubernetes)
   - [Task 2: Pipelines](#task-2-pipelines)
     - [Task 2.1 Jenkins](#task-21-jenkins)
@@ -343,7 +345,7 @@ DoD:
 
 - From the host machine, you must be able to view the website when the compose file is up via your browser.
 
-#### Task 1.2.9 Your Compose from Source
+#### Task 1.2.10 Your Compose from Source
 
 Create a docker-compose.yml file that will build and run your image's Dockerfile from the previous task (1.1.5). The website should be accessible from the host machine on port `9999`.
 
