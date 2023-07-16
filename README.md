@@ -23,6 +23,7 @@ Table of Contents:
       - [Task 1.1.8 Docker Volumes](#task-118-docker-volumes)
       - [Task 1.1.9 Docker Networks](#task-119-docker-networks)
       - [Task 1.1.10 Docker Commit](#task-1110-docker-commit)
+      - [Task 1.1.11 Dockerfile and Justauser](#task-1111-dockerfile-and-justauser)
     - [Task 1.2 Docker-compose](#task-12-docker-compose)
       - [Task 1.2.1 Docker Compose Up/Down/Start/Stop](#task-121-docker-compose-updownstartstop)
       - [Task 1.2.2 Docker Compose Logs](#task-122-docker-compose-logs)
@@ -30,8 +31,8 @@ Table of Contents:
       - [Task 1.2.4 Docker Compose Exec](#task-124-docker-compose-exec)
       - [Task 1.2.5 Docker Compose Scale](#task-125-docker-compose-scale)
       - [Task 1.2.6 Docker Compose Top](#task-126-docker-compose-top)
-      - [Task 1.2.7 Running a Single Container](#task-127-running-a-single-container)
-      - [Task 1.2.8 Running Multiple Containers](#task-128-running-multiple-containers)
+      - [Task 1.2.7 Running a Single Service](#task-127-running-a-single-service)
+      - [Task 1.2.8 Running Multiple Services](#task-128-running-multiple-services)
       - [Task 1.2.9 Your Compose](#task-129-your-compose)
       - [Task 1.2.10 Your Compose from Source](#task-1210-your-compose-from-source)
     - [Task 1.3 Kubernetes](#task-13-kubernetes)
@@ -260,6 +261,16 @@ DoD:
 
 - You must be able to successfully run the `curl` command in a new container created from the committed image.
 
+#### Task 1.1.11 Dockerfile and Justauser
+
+Create a Dockerfile based on the latest stable Debian image. Create a file called test.txt with some sample text inside. In the Dockerfile, use the `RUN` instruction to install `curl`, `git` and `wget` in the image. Then, build the image and run a new container from it. Verify that `curl` and `wget` are installed in the running container. After that modify the Dockerfile to use a custom user called "justauser" and build the image again. Run a new container from the new image and verify that the user is "justauser". After that modify the Dockerfile to copy the test.txt file to the /home/justauser folder and build the image again. Run a new container from the new image and verify that the test.txt file is in the /home/justauser folder and justauser can read it.
+
+DoD:
+
+- You must be able to successfully run the `curl`, `git` and `wget` commands in a new container created from the image.
+- When running `id` in the container, the user should be "justauser".
+- The test.txt file should be in the /home/justauser folder and justauser should be able to read it.
+
 ### Task 1.2 Docker-compose
 
 #### Task 1.2.1 Docker Compose Up/Down/Start/Stop
@@ -312,7 +323,7 @@ DoD:
 
 - You must be able to view the running processes in the service container with `docker compose top`.
 
-#### Task 1.2.7 Running a Single Container
+#### Task 1.2.7 Running a Single Service
 
 Create a Docker Compose file named `docker-compose.yml` and define a service to run a single container based on <https://hub.docker.com/r/yeasy/simple-web/>. The container should expose a port, and the service should be named `myapp`. Run the service using Docker Compose.
 
@@ -323,7 +334,7 @@ DoD:
 - The container should expose a port.
 - Running `docker-compose up` should start the service and the container.
 
-#### Task 1.2.8 Running Multiple Containers
+#### Task 1.2.8 Running Multiple Services
 
 Extend the previous Docker Compose file (`docker-compose.yml`) to define two services: `web` and `database`. The `web` service should run a container based on an image of a web application (e.g., nginx), and the `database` service should run a container based on an image of a database server (e.g., MySQL). The two services should be able to communicate with each other.
 
