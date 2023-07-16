@@ -10,7 +10,28 @@ Basic DevOps hands-on tasks for beginners looking to learn the ropes. This is a 
     - [Extra](#extra)
   - [Task 1: Starting apps](#task-1-starting-apps)
     - [Task 1.1 Docker](#task-11-docker)
+      - [Task 1.1.1 Postgre Server and Client](#task-111-postgre-server-and-client)
+      - [Task 1.1.2 MySQL Server and Client](#task-112-mysql-server-and-client)
+      - [Task 1.1.3 MongoDB Server and Client](#task-113-mongodb-server-and-client)
+      - [Task 1.1.4 Redis Server and Client](#task-114-redis-server-and-client)
+      - [Task 1.1.5 Your Website](#task-115-your-website)
+      - [Task 1.1.5 Your Docker Image](#task-115-your-docker-image)
+      - [Task 1.1.6 Docker Exec](#task-116-docker-exec)
+      - [Task 1.1.7 Docker Environment Variables](#task-117-docker-environment-variables)
+      - [Task 1.1.8 Docker Volumes](#task-118-docker-volumes)
+      - [Task 1.1.9 Docker Networks](#task-119-docker-networks)
+      - [Task 1.1.10 Docker Commit](#task-1110-docker-commit)
     - [Task 1.2 Docker-compose](#task-12-docker-compose)
+      - [Task 1.2.1 Docker Compose Up/Down/Start/Stop](#task-121-docker-compose-updownstartstop)
+      - [Task 1.2.2 Docker Compose Logs](#task-122-docker-compose-logs)
+      - [Task 1.2.3 Docker Compose Ps](#task-123-docker-compose-ps)
+      - [Task 1.2.4 Docker Compose Exec](#task-124-docker-compose-exec)
+      - [Task 1.2.5 Docker Compose Scale](#task-125-docker-compose-scale)
+      - [Task 1.2.6 Docker Compose Top](#task-126-docker-compose-top)
+      - [Task 1.2.7 Running a Single Container](#task-127-running-a-single-container)
+      - [Task 1.2.8 Running Multiple Containers](#task-128-running-multiple-containers)
+      - [Task 1.2.9 Your Compose](#task-129-your-compose)
+      - [Task 1.2.9 Your Compose from Source](#task-129-your-compose-from-source)
     - [Task 1.3 Kubernetes](#task-13-kubernetes)
   - [Task 2: Pipelines](#task-2-pipelines)
     - [Task 2.1 Jenkins](#task-21-jenkins)
@@ -109,6 +130,9 @@ In order to move forward, it is better to have a virtual machine running Ubuntu 
 - jq
 - curl
 - wget
+- DBeaver
+- MongoDB Compass
+- Redis Commander
 
 You can find the official documentations to see how to install and configure the tools.
 
@@ -136,9 +160,196 @@ TODO
 
 TODO
 
+#### Task 1.1.1 Postgre Server and Client
+
+Start the latest stable Postgre server via docker run command. The server should be accessible from the host machine. In another container run psql (Postgre client CLI) and connect to the server.
+
+DoD:
+
+- You must be able to view the Postgre server version from the client via command, be able to CRUD databases and get the size of all databases.
+
+Bonus: Also do it via GUI (ex. DBeaver).
+
+#### Task 1.1.2 MySQL Server and Client
+
+Start the latest stable MySQL server via docker run command. The server should be accessible from the host machine. In another container run mysql (MySQL client CLI) and connect to the server.
+
+DoD:
+
+- You must be able to view the MySQL server version from the client via command, be able to CRUD databases and get the size of all databases.
+
+Bonus: Also do it via GUI (ex. DBeaver).
+
+#### Task 1.1.3 MongoDB Server and Client
+
+Start a MongoDB server with the latest version via a docker run command. The server should be accessible from the host machine. In another container, run the MongoDB client CLI (mongosh) and connect to the server.
+
+DoD:
+
+- You must be able to view the MongoDB server version from the client via a command, be able to CRUD collections, and retrieve the size of all collections.
+
+Bonus: Also do it via GUI (ex. MongoDB Compass).
+
+#### Task 1.1.4 Redis Server and Client
+
+Start the latest stable Redis server via a docker run command. The server should be accessible from the host machine. In another container, run the Redis CLI (redis-cli) and connect to the server.
+
+DoD:
+
+You must be able to view the Redis server version from the client via a command, be able to CRUD data, and retrieve the size of all databases.
+
+Bonus: Also do it via GUI (ex. Redis Commander).
+
+#### Task 1.1.5 Your Website
+
+Generate a simple website using ChatGPT (inline CSS, JS and HTML) and save it as index.html. In the same folder prepare Dockerfile that will use nginx:alpine as a base image and copy the index.html file to the /usr/share/nginx/html folder. Build the image and run it as a container. The website should be accessible from the host machine on port 8080.
+
+DoD:
+
+-You must be able to view the website from the host machine via a browser.
+
+#### Task 1.1.5 Your Docker Image
+
+Create a hub.docker.com account and push the image you created in the previous task to your account. The image should be public.
+
+DoD:
+
+- You must be able to view the image from the hub.docker.com website.
+
+#### Task 1.1.6 Docker Exec
+
+Run a new `alpine` container in the background. Then, use the `docker exec` command to run the `ls` command in the running container.
+
+DoD:
+
+- You must be able to view the output of the `ls` command from the running container.
+
+#### Task 1.1.7 Docker Environment Variables
+
+Create a Dockerfile that uses the `nginx:alpine` image as a base. In the Dockerfile, use the `ENV` instruction to define an environment variable `NGINX_PORT` with a default value of 8080. Then, run a container from this image, but override the `NGINX_PORT` environment variable to 8081 using the `-e` option in the `docker run` command.
+
+DoD:
+
+- You must be able to view the value of the `NGINX_PORT` environment variable from within the running container. You can do this by using the `docker exec` command to run the `env` command in the running container.
+
+#### Task 1.1.8 Docker Volumes
+
+Create a Docker volume using the `docker volume create` command. Then, run a new `nginx:alpine` container and mount the created volume to the `/usr/share/nginx/html` directory in the container. Create a simple `index.html` (write hello world inside) file in the volume (from the host machine), and verify that the file is accessible from within the container.
+
+DoD:
+
+- You must be able to view the `index.html` file from within the running container. You can do this by using the `docker exec` command to run the `cat` command in the running container.
+
+Bonus: Prepare the index.html file via a shell script.
+
+#### Task 1.1.9 Docker Networks
+
+Create a new Docker network using the `docker network create` command. Then, run two new `alpine` containers in this network. Use the `docker exec` command to install `ping` in both containers, and then use `ping` to verify that the containers can communicate with each other over the network.
+
+DoD:
+
+- You must be able to successfully ping one container from the other.
+
+#### Task 1.1.10 Docker Commit
+
+Run a new `alpine` container, and use the `docker exec` command to install `curl` in the running container. Then, use the `docker commit` command to create a new image from the running container. Finally, run a new container from this image and verify that `curl` is installed.
+
+DoD:
+
+- You must be able to successfully run the `curl` command in a new container created from the committed image.
+
 ### Task 1.2 Docker-compose
 
-TODO
+#### Task 1.2.1 Docker Compose Up/Down/Start/Stop
+
+Create a Docker Compose file that defines a service to run a simple web server (for example, nginx). Use the `docker compose up` command to start the service, and verify that the web server is running correctly. Stop the service and start it again. Then, use the `docker compose down -v` command to stop the service and remove the volumes.
+
+DoD:
+
+- You must be able to start the service with `docker compose up` and stop it with `docker compose down -v`.
+- The web server must be accessible from the host browser when the service is up.
+
+#### Task 1.2.2 Docker Compose Logs
+
+Start the service from the previous tasks, and then use the `docker compose logs` command to view the logs of the service.
+
+DoD:
+
+- You must be able to view the logs of the service with `docker compose logs`.
+
+#### Task 1.2.3 Docker Compose Ps
+
+Start the service from the previous tasks, and then use the `docker compose ps` command to view the status of the service.
+
+DoD:
+
+- You must be able to view the status of the service with `docker compose ps`.
+
+#### Task 1.2.4 Docker Compose Exec
+
+Start the service from the previous tasks, and then use the `docker compose exec` command to run a command (for example, `ls`) in the service container.
+
+DoD:
+
+- You must be able to run a command in the service container with `docker compose exec`.
+
+#### Task 1.2.5 Docker Compose Scale
+
+Create a Docker Compose file that defines a service to run a stateless application (for example, a web server). Use the `docker compose up --scale` command to start multiple instances of the service, and verify that all instances are running correctly.
+
+DoD:
+
+- You must be able to start multiple instances of the service with `docker compose up --scale`.
+- All instances must be running correctly.
+
+#### Task 1.2.6 Docker Compose Top
+
+Start the service from the previous tasks, and then use the `docker compose top` command to view the running processes in the service container.
+
+DoD:
+
+- You must be able to view the running processes in the service container with `docker compose top`.
+
+#### Task 1.2.7 Running a Single Container
+
+Create a Docker Compose file named `docker-compose.yml` and define a service to run a single container based on <https://hub.docker.com/r/yeasy/simple-web/>. The container should expose a port, and the service should be named `myapp`. Run the service using Docker Compose.
+
+DoD:
+
+- The Docker Compose file `docker-compose.yml` should define a service named `myapp`.
+- The service should run a single container based on an image of your choice.
+- The container should expose a port.
+- Running `docker-compose up` should start the service and the container.
+
+#### Task 1.2.8 Running Multiple Containers
+
+Extend the previous Docker Compose file (`docker-compose.yml`) to define two services: `web` and `database`. The `web` service should run a container based on an image of a web application (e.g., nginx), and the `database` service should run a container based on an image of a database server (e.g., MySQL). The two services should be able to communicate with each other.
+
+DoD:
+
+- The Docker Compose file should define two services named `web`, `database` and `myapp`.
+- The `web` service should run a container based on an image of a web application (e.g., nginx).
+- You must shell into the web container, install telnet and perform a telnet to the database container on port 3306 - the connection should be successful.
+- From the `web` container, you must be able to ping the database container.
+- From the `web` container, you must be able to get the website running on the `myapp` container using `curl`.
+- The `database` service should run a container based on an image of a database server (e.g., MySQL).
+- The containers in the `web` and `database` services should be able to communicate with each other.
+
+#### Task 1.2.9 Your Compose
+
+Create a docker-compose.yml file that will run your website from the previous task (1.1.5). The website should be accessible from the host machine on port `9999`.
+
+DoD:
+
+- From the host machine, you must be able to view the website when the compose file is up via your browser.
+
+#### Task 1.2.9 Your Compose from Source
+
+Create a docker-compose.yml file that will build and run your image's Dockerfile from the previous task (1.1.5). The website should be accessible from the host machine on port `9999`.
+
+DoD:
+
+- From the host machine, you must be able to view the website when the compose file is up via your browser.
 
 ### Task 1.3 Kubernetes
 
