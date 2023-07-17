@@ -36,6 +36,22 @@ Table of Contents:
       - [Task 1.2.9 Your Compose](#task-129-your-compose)
       - [Task 1.2.10 Your Compose from Source](#task-1210-your-compose-from-source)
     - [Task 1.3 Kubernetes](#task-13-kubernetes)
+      - [Task 1.3.1 Starting a Cluster](#task-131-starting-a-cluster)
+      - [Task 1.3.2 Connecting to the Cluster](#task-132-connecting-to-the-cluster)
+      - [Task 1.3.3 Creating a Pod](#task-133-creating-a-pod)
+      - [Task 1.3.4 Creating a Deployment](#task-134-creating-a-deployment)
+      - [Task 1.3.5 Creating a StatefulSet](#task-135-creating-a-statefulset)
+      - [Task 1.3.6 Creating a Secret](#task-136-creating-a-secret)
+      - [Task 1.3.7 Creating a ConfigMap](#task-137-creating-a-configmap)
+      - [Task 1.3.8 Creating a Service](#task-138-creating-a-service)
+      - [Task 1.3.9 Creating an Ingress](#task-139-creating-an-ingress)
+      - [Task 1.3.10 Performing a Rollout Restart](#task-1310-performing-a-rollout-restart)
+      - [Task 1.3.11 Patching a Resource](#task-1311-patching-a-resource)
+      - [Task 1.3.12 Creating a Persistent Volume and Persistent Volume Claim](#task-1312-creating-a-persistent-volume-and-persistent-volume-claim)
+      - [Task 1.3.13 Updating a Deployment to Use a Persistent Volume](#task-1313-updating-a-deployment-to-use-a-persistent-volume)
+      - [Task 1.3.14 Creating a Horizontal Pod Autoscaler](#task-1314-creating-a-horizontal-pod-autoscaler)
+      - [Task 1.3.15 Creating a Network Policy](#task-1315-creating-a-network-policy)
+      - [Task 1.3.16 Creating a Job](#task-1316-creating-a-job)
   - [Task 2: Pipelines](#task-2-pipelines)
     - [Task 2.1 Jenkins](#task-21-jenkins)
     - [Task 2.2 Gitlab](#task-22-gitlab)
@@ -366,7 +382,161 @@ DoD:
 
 ### Task 1.3 Kubernetes
 
-TODO
+#### Task 1.3.1 Starting a Cluster
+
+Start a local Kubernetes cluster using Minikube.
+
+DoD:
+
+- You must be able to get the status of a local Kubernetes cluster using the `minikube status` command.
+- Running `kubectl cluster-info` should display information about the running cluster.
+
+#### Task 1.3.2 Connecting to the Cluster
+
+Connect to the local Kubernetes cluster using `kubectl`, `k9s`, and `LENS`.
+
+DoD:
+
+- You must be able to view the nodes of the cluster using the `kubectl get nodes` command.
+- You must be able to connect to the cluster using `k9s` and `LENS` TUI/GUI.
+
+#### Task 1.3.3 Creating a Pod
+
+Create a Pod named `my-pod` running the `nginx:1.14.2` image in the local Kubernetes cluster.
+
+DoD:
+
+- You must be able to create the Pod using `kubectl apply` with a YAML configuration file.
+- Running `kubectl get pods` should display `my-pod` in the list.
+- Running `kubectl describe pod my-pod` should show that the Pod is running the `nginx:1.14.2` image.
+
+#### Task 1.3.4 Creating a Deployment
+
+Create a Deployment named `my-deployment` running the `nginx:1.14.2` image with 3 replicas in the local Kubernetes cluster.
+
+DoD:
+
+- You must be able to create the Deployment using `kubectl apply` with a YAML configuration file.
+- Running `kubectl get deployments` should display `my-deployment` in the list.
+- Running `kubectl describe deployment my-deployment` should show that the Deployment is running 3 replicas of the `nginx:1.14.2` image.
+
+#### Task 1.3.5 Creating a StatefulSet
+
+Create a StatefulSet named `my-statefulset` running the `nginx:1.14.2` image with 3 replicas in the local Kubernetes cluster.
+
+DoD:
+
+- You must be able to create the StatefulSet using `kubectl apply` with a YAML configuration file.
+- Running `kubectl get statefulsets` should display `my-statefulset` in the list.
+- Running `kubectl describe statefulset my-statefulset` should show that the StatefulSet is running 3 replicas of the `nginx:1.14.2` image.
+
+#### Task 1.3.6 Creating a Secret
+
+Create a Secret named `my-secret` with the data `username=admin` and `password=secret` in the local Kubernetes cluster.
+
+DoD:
+
+- You must be able to create the Secret using `kubectl create secret` command.
+- Running `kubectl get secrets` should display `my-secret` in the list.
+- Running `kubectl describe secret my-secret` should show that the Secret contains the keys `username` and `password`.
+
+#### Task 1.3.7 Creating a ConfigMap
+
+Create a ConfigMap named `my-configmap` with the data `log_level=info` and `max_connections=100` in the local Kubernetes cluster.
+
+DoD:
+
+- You must be able to create the ConfigMap using `kubectl create configmap` command.
+- Running `kubectl get configmaps` should display `my-configmap` in the list.
+- Running `kubectl describe configmap my-configmap` should show that the ConfigMap contains the keys `log_level` and `max_connections`.
+
+#### Task 1.3.8 Creating a Service
+
+Create a Service named `my-service` that exposes `my-deployment` on port 80 in the local Kubernetes cluster.
+
+DoD:
+
+- You must be able to create the Service using `kubectl apply` with a YAML configuration file.
+- Running `kubectl get services` should display `my-service` in the list.
+- Running `kubectl describe service my-service` should show that the Service is routing traffic to `my-deployment` on port 80.
+
+#### Task 1.3.9 Creating an Ingress
+
+Create an Ingress named `my-ingress` that routes traffic to `my-service` on path `/` in the local Kubernetes cluster.
+
+DoD:
+
+- You must be able to create the Ingress using `kubectl apply` with a YAML configuration file.
+- Running `kubectl get ingress` should display `my-ingress` in the list.
+- Running `kubectl describe ingress my-ingress` should show that the Ingress is routing traffic to `my-service` on path `/`.
+
+#### Task 1.3.10 Performing a Rollout Restart
+
+Perform a rollout restart on `my-deployment`.
+
+DoD:
+
+- You must be able to perform a rollout restart on `my-deployment` using the `kubectl rollout restart` command.
+- Running `kubectl rollout status deployment my-deployment` should show that the Deployment has been restarted.
+
+#### Task 1.3.11 Patching a Resource
+
+Update the `my-deployment` to use the `nginx:1.16.1` image.
+
+DoD:
+
+- You must be able to update `my-deployment` to use the `nginx:1.16.1` image using the `kubectl set image` command.
+- Running `kubectl describe deployment my-deployment` should show that the Deployment is now using the `nginx:1.16.1` image.
+
+#### Task 1.3.12 Creating a Persistent Volume and Persistent Volume Claim
+
+Create a Persistent Volume (PV) named `my-pv` with a capacity of 1Gi and access modes `ReadWriteOnce`. Also, create a Persistent Volume Claim (PVC) named `my-pvc` that requests a volume of 1Gi.
+
+DoD:
+
+- You must be able to create the PV and PVC using `kubectl apply` with a YAML configuration file.
+- Running `kubectl get pv` should display `my-pv` in the list.
+- Running `kubectl get pvc` should display `my-pvc` in the list.
+- The `my-pvc` should be bound to `my-pv`.
+
+#### Task 1.3.13 Updating a Deployment to Use a Persistent Volume
+
+Update `my-deployment` to mount the volume claimed by `my-pvc` at the path `/data`.
+
+DoD:
+
+- You must be able to update `my-deployment` to use the volume claimed by `my-pvc` using `kubectl apply` with a YAML configuration file.
+- Running `kubectl describe deployment my-deployment` should show that the Deployment is mounting the volume at `/data`.
+
+#### Task 1.3.14 Creating a Horizontal Pod Autoscaler
+
+Create a Horizontal Pod Autoscaler (HPA) for `my-deployment` that maintains between 1 and 10 replicas and targets CPU utilization at 50%.
+
+DoD:
+
+- You must be able to create the HPA using `kubectl apply` with a YAML configuration file.
+- Running `kubectl get hpa` should display the HPA for `my-deployment`.
+- Running `kubectl describe hpa my-deployment` should show that the HPA is maintaining between 1 and 10 replicas and targeting CPU utilization at 50%.
+
+#### Task 1.3.15 Creating a Network Policy
+
+Create a Network Policy that allows traffic to `my-deployment` only from Pods in the same namespace.
+
+DoD:
+
+- You must be able to create the Network Policy using `kubectl apply` with a YAML configuration file.
+- Running `kubectl get networkpolicies` should display the Network Policy for `my-deployment`.
+- Running `kubectl describe networkpolicy my-network-policy` (replace `my-network-policy` with the name of your Network Policy) should show that the Network Policy allows traffic to `my-deployment` only from Pods in the same namespace.
+
+#### Task 1.3.16 Creating a Job
+
+Create a Job that runs the `busybox` image and executes the command `echo "Hello, Kubernetes!"`.
+
+DoD:
+
+- You must be able to create the Job using `kubectl apply` with a YAML configuration file.
+- Running `kubectl get jobs` should display the Job.
+- Running `kubectl logs job/my-job` (replace `my-job` with the name of your Job) should display "Hello, Kubernetes!".
 
 ## Task 2: Pipelines
 
