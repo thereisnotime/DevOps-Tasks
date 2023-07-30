@@ -165,7 +165,6 @@ To ease your way into the DevOps world, we will be using the following services:
 - Register at [Docker Hub](https://hub.docker.com).
 - Register at [Oracle](https://youtu.be/NKc3k7xceT8) for a free VM.
 - Register at [Cloudflare](https://www.cloudflare.com/) for managing DNS zones.
--
 
 ### Extra
 
@@ -177,7 +176,7 @@ TODO
 
 ### Task 1.1 Docker
 
-TODO
+Take a look at the examples for running databases, frameworks, apps and others here: [Docker Examples](https://docs.docker.com/samples/)
 
 #### Task 1.1.1 Postgre Server and Client
 
